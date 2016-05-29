@@ -5,3 +5,4 @@ unit_coverage
 bower_components
 typings
 *.sublime*
+npm-debug.*
