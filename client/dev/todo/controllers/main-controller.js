@@ -8,10 +8,17 @@
             '$scope',
             function($log, $scope) {
                 $scope.name = 'Bob';
+                $scope.number1 = 0;
+                $scope.number2 = 1;
 
-                function isValid() {
-                  return true;
-                }
+                $scope.isValid = function() {
+                    return true;
+                };
+
+                $scope.calculateNumbers = function() {
+                    $scope.number1 = 55;
+                    $scope.number2 = 66;
+                };
 
             }
         ]);

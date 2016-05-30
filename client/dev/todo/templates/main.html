@@ -1,13 +1,13 @@
 <div class="container">
     <!-- <div ng-controller="mainCtrl"> -->
         <div class="todo-panel transition">
-            <form name="NumerologyForm" ng-submit="mainCtrl.calculateNumbers()">
+            <form name="NumerologyForm" ng-submit="calculateNumbers()">
                 <div class="title-container">
                     <h1 class="text-muted text-center">Numerology</h1>
                 </div>
                 <hr />
                 <div class="numbers-container">
-                    <input type="text" class="form-control input-lg" placeholder="Enter Name" ng-model="mainCtrl.name" name="mainName" maxlength="100" ng-maxlength="100" ng-minlength="5" required autofocus />
+                    <input type="text" class="form-control input-lg" placeholder="Enter Name" ng-model="name" name="mainName" maxlength="100" ng-maxlength="100" ng-minlength="5" required autofocus />
                     <ng-messages for="NumerologyForm.mainName.$error">
                         <ng-message when="required" class="error-msg">name field is required</ng-message>
                         <ng-message when="minlength" class="error-msg">Min of 5 chars</ng-message>
@@ -33,9 +33,13 @@
         </div>
  -->
                 </div>
+                <div class="numbers-container">
+                <p> <span>The first number :</span>{{number1}}</p>
+                <p> <span>The 2nd number :</span>{{number2}}</p>
+                </div>
                 <hr />
                 <div class="footer-container">
-                    <button type="submit" id="submit-name-button" class="btn btn-success btn-block btn-lg submit-name" ng-disabled="NumerologyForm.$invalid || !mainCtrl.isValid()"> Submit </button>
+                    <button type="submit" id="submit-name-button" class="btn btn-success btn-block btn-lg submit-todo" ng-disabled="NumerologyForm.$invalid || !isValid()"> Submit </button>
                 </div>
             </form>
         </div>
