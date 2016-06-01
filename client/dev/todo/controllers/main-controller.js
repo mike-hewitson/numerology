@@ -7,17 +7,21 @@
             '$log',
             '$scope',
             function($log, $scope) {
-                $scope.name = 'Bob';
-                $scope.number1 = 0;
-                $scope.number2 = 1;
-
                 $scope.isValid = function() {
                     return true;
                 };
 
                 $scope.calculateNumbers = function() {
-                    $scope.number1 = 55;
-                    $scope.number2 = 66;
+                    var firstName = $scope.firstName.replace('-', ' ');
+                    var firstNames = firstName.split(' ');
+                    if (firstNames.length > 3) {
+                        $scope.firstNames = [firstNames[0], firstNames[firstNames.length - 1]];
+                    } else {
+                        $scope.firstNames = firstNames;
+                    }
+
+
+                    $scope.surname = $scope.lastName.replace('-', '');
                 };
 
             }

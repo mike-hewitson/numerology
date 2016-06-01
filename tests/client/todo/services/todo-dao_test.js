@@ -1,6 +1,6 @@
 'use strict';
 
-describe('todo.dao', function() {
+xdescribe('todo.dao', function() {
   var _rootScope, _scope, _httpBackend, _TodoDAO, _Todo;
   var URL_GET_ALL = '/api/todos';
   var URL_CREATE_TODO = '/api/todos';

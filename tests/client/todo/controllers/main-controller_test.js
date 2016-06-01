@@ -1,5 +1,7 @@
 'use strict';
 
+// var expect = require('chai').expect;
+
 describe('main.controller', function() {
     var _scope, _Todo, _httpBackend, _logMock;
     var CONTROLLER_NAME = 'MainController as mainCtrl';
@@ -18,19 +20,19 @@ describe('main.controller', function() {
 
     describe('init', function() {
         xit('should be initialized correctly', inject(function($controller) {
-            $controller(CONTROLLER_NAME, {$scope: _scope});
+            $controller(CONTROLLER_NAME, { $scope: _scope });
         }));
 
         xit('should have todo as the instanceof Todo', inject(function($controller) {
-            $controller(CONTROLLER_NAME, {$scope: _scope});
+            $controller(CONTROLLER_NAME, { $scope: _scope });
 
             expect(_scope.todoCtrl.todo instanceof _Todo).toBeTruthy();
         }));
 
         xit('should have todos as an empty array', inject(function($controller) {
-          $controller(CONTROLLER_NAME, {$scope: _scope});
+            $controller(CONTROLLER_NAME, { $scope: _scope });
 
-          expect(window.angular.equals(_scope.todoCtrl.todos, [])).toBeTruthy();
+            expect(window.angular.equals(_scope.todoCtrl.todos, [])).toBeTruthy();
         }));
     });
 
@@ -68,63 +70,74 @@ describe('main.controller', function() {
         //     expect(_logMock.error).toHaveBeenCalled();
         // }));
 
-        it('should return test answers correctly', inject(function($controller) {
-          // var _response = {_id: 'abcdef123', todoMessage: 'abcdef', createdAt: Date.now()};
+        xit('given any name it should return test answers correctly', inject(function($controller) {
+            // var _response = {_id: 'abcdef123', todoMessage: 'abcdef', createdAt: Date.now()};
 
-          /* jshint -W055 */
-          // var _todo = new _Todo();
-          // _todo.todoMessage = 'abcdef';
+            /* jshint -W055 */
+            // var _todo = new _Todo();
+            // _todo.todoMessage = 'abcdef';
 
-          // _httpBackend.expectGET(URL_GET_ALL).respond(200);
-          // _httpBackend.expectPOST(URL_CREATE_TODO, _todo).respond(200, _response);
+            // _httpBackend.expectGET(URL_GET_ALL).respond(200);
+            // _httpBackend.expectPOST(URL_CREATE_TODO, _todo).respond(200, _response);
 
-          $controller(CONTROLLER_NAME, {$scope: _scope});
+            $controller(CONTROLLER_NAME, { $scope: _scope });
 
-          _scope.calculateNumbers();
+            _scope.calculateNumbers();
 
-          // _httpBackend.flush();
+            // _httpBackend.flush();
 
-          expect(window.angular.equals(_scope.number1, 55)).toBeTruthy();
-          expect(window.angular.equals(_scope.number2, 66)).toBeTruthy();
-          // expect(_scope.todoCtrl.todo.todoMessage).toBeNull();
+            expect(window.angular.equals(_scope.number1, 55)).toBeTruthy();
+            expect(window.angular.equals(_scope.number2, 66)).toBeTruthy();
+            // expect(_scope.todoCtrl.todo.todoMessage).toBeNull();
+        }));
+
+        it('given Bob Smith should return Bob Smith ', inject(function($controller) {
+            $controller(CONTROLLER_NAME, { $scope: _scope });
+
+            _scope.firstName = 'Bob';
+            _scope.lastName = 'Smith';
+            _scope.calculateNumbers();
+
+            expect(_scope.firstNames[0]).to.equal('Bob');
+            expect(_scope.surname).to.equal('Smith');
+        }));
+
+        it('given a hyphenated name first name, return the as two names', inject(function($controller) {
+            $controller(CONTROLLER_NAME, { $scope: _scope });
+
+            _scope.firstName = 'Bob-Joe';
+            _scope.lastName = 'Smith';
+            _scope.calculateNumbers();
+
+            expect(_scope.firstNames).to.have.length(2);
+            expect(_scope.firstNames[0]).to.equal('Bob');
+            expect(_scope.firstNames[1]).to.equal('Joe');
+            expect(_scope.surname).to.equal('Smith');
+        }));
+        it('given three first names, return all three', inject(function($controller) {
+            $controller(CONTROLLER_NAME, { $scope: _scope });
+
+            _scope.firstName = 'Bob Joe John';
+            _scope.lastName = 'Smith';
+            _scope.calculateNumbers();
+
+            expect(_scope.firstNames).to.have.length(3);
+            expect(_scope.firstNames[0]).to.equal('Bob');
+            expect(_scope.firstNames[1]).to.equal('Joe');
+            expect(_scope.firstNames[2]).to.equal('John');
+            expect(_scope.surname).to.equal('Smith');
+        }));
+        it('given more than three first names, return the first and last', inject(function($controller) {
+            $controller(CONTROLLER_NAME, { $scope: _scope });
+
+            _scope.firstName = 'Bob Joe John Alice';
+            _scope.lastName = 'Smith';
+            _scope.calculateNumbers();
+
+            expect(_scope.firstNames).to.have.length(2);
+            expect(_scope.firstNames[0]).to.equal('Bob');
+            expect(_scope.firstNames[1]).to.equal('Alice');
+            expect(_scope.surname).to.equal('Smith');
         }));
     });
-
-    // describe('deleteTodo', function() {
-    //   it('should try to deleteTodo, but server returns error - 400', inject(function($controller) {
-    //     var _id = '1';
-    //     var _response = [{_id: 1}];
-
-    //     spyOn(_logMock, 'error').and.callFake(window.angular.noop);
-
-    //     _httpBackend.expectGET(URL_GET_ALL).respond(200, _response);
-    //     _httpBackend.expectDELETE(URL_DELETE_TODO + _id).respond(400);
-
-    //     $controller(CONTROLLER_NAME, {$scope: _scope});
-
-    //     _scope.todoCtrl.deleteTodo(_id);
-
-    //     _httpBackend.flush();
-
-    //     expect(_logMock.error).toHaveBeenCalled();
-    //   }));
-
-    //   it('should deleteTodo correctly', inject(function($controller) {
-    //     var _id = '1';
-    //     var _responseGET = [{_id: '0'}, {_id: '1'}];
-    //     var _responseGETAfterDelete = [{_id: '0'}];
-
-    //     _httpBackend.expectGET(URL_GET_ALL).respond(200, _responseGET);
-    //     _httpBackend.expectDELETE(URL_DELETE_TODO + _id).respond(200);
-    //     _httpBackend.expectGET(URL_GET_ALL).respond(200, _responseGETAfterDelete);
-
-    //     $controller(CONTROLLER_NAME, {$scope: _scope});
-
-    //     _scope.todoCtrl.deleteTodo(_id);
-
-    //     _httpBackend.flush();
-
-    //     expect(_scope.todoCtrl.todos.length).toBe(1);
-    //   }));
-    // });
 });

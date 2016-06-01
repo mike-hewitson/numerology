@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Todo', function() {
+xdescribe('Todo', function() {
   var _Todo;
 
   beforeEach(module('numerology'));

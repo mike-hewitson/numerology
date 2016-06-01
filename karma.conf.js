@@ -9,7 +9,7 @@ module.exports = (config) => {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai'],
 
 
     // list of files / patterns to load in the browser
@@ -22,6 +22,7 @@ module.exports = (config) => {
         'client/dev/bower_components/angular-messages/angular-messages.min.js',
 
         'client/dev/app.js',
+        'client/dev/chai.js',
         'client/dev/app.config.js',
         'client/dev/app.route.js',
         'client/dev/!(bower_components)/**/*.js',

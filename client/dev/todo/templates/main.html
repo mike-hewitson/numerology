@@ -10,7 +10,7 @@
                 <input type="text" class="form-control input-lg" placeholder="Enter First Name" ng-model="firstName" name="firstName" maxlength="100" ng-maxlength="100" ng-minlength="2" required autofocus />
                 <ng-messages for="NumerologyForm.firstName.$error">
                     <ng-message when="required" class="error-msg">First name is required</ng-message>
-                    <ng-message when="minlength" class="error-msg">Min of 5 chars</ng-message>
+                    <ng-message when="minlength" class="error-msg">Min of 2 chars</ng-message>
                     <ng-message when="maxlength" class="error-msg">Max of 100 chars</ng-message>
                 </ng-messages>
                 <br />
@@ -37,15 +37,15 @@
                 <input type="text" class="form-control input-lg" placeholder="Enter Last Name" ng-model="lastName" name="lastName" maxlength="100" ng-maxlength="100" ng-minlength="4" required autofocus />
                 <ng-messages for="NumerologyForm.lastName.$error">
                     <ng-message when="required" class="error-msg">Last name is required</ng-message>
-                    <ng-message when="minlength" class="error-msg">Min of 5 chars</ng-message>
+                    <ng-message when="minlength" class="error-msg">Min of 4 chars</ng-message>
                     <ng-message when="maxlength" class="error-msg">Max of 100 chars</ng-message>
                 </ng-messages>
                 <br />
                 <br />
             </div>
             <div class="numbers-container">
-                <p> <span>The first number :</span>{{number1}}</p>
-                <p> <span>The 2nd number :</span>{{number2}}</p>
+                <p> <span>Corrected first names :</span>{{firstNames}}</p>
+                <p> <span>Corrected last name :</span>{{surname}}</p>
             </div>
             <hr />
             <div class="footer-container">
