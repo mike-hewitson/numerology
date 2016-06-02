@@ -139,5 +139,29 @@ describe('main.controller', function() {
             expect(_scope.firstNames[1]).to.equal('Alice');
             expect(_scope.surname).to.equal('Smith');
         }));
+        it('given a double barrel name, return it joined', inject(function($controller) {
+            $controller(CONTROLLER_NAME, { $scope: _scope });
+
+            _scope.firstName = 'Bob Joe John Alice';
+            _scope.lastName = 'Jones Smith';
+            _scope.calculateNumbers();
+
+            // expect(_scope.firstNames).to.have.length(2);
+            // expect(_scope.firstNames[0]).to.equal('Bob');
+            // expect(_scope.firstNames[1]).to.equal('Alice');
+            expect(_scope.surname).to.equal('JonesSmith');
+        }));
+        it('given a hyphenated name, return it joined', inject(function($controller) {
+            $controller(CONTROLLER_NAME, { $scope: _scope });
+
+            _scope.firstName = 'Bob Joe John Alice';
+            _scope.lastName = 'Smith-Jones';
+            _scope.calculateNumbers();
+
+            // expect(_scope.firstNames).to.have.length(2);
+            // expect(_scope.firstNames[0]).to.equal('Bob');
+            // expect(_scope.firstNames[1]).to.equal('Alice');
+            expect(_scope.surname).to.equal('SmithJones');
+        }));
     });
 });
