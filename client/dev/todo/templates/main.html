@@ -6,7 +6,7 @@
                 <h1 class="text-muted text-center">Numerology</h1>
             </div>
             <hr />
-            <div class="numbers-container">
+            <div class="firstname-container">
                 <input type="text" class="form-control input-lg" placeholder="Enter First Name" ng-model="firstName" name="firstName" maxlength="100" ng-maxlength="100" ng-minlength="2" required autofocus />
                 <ng-messages for="NumerologyForm.firstName.$error">
                     <ng-message when="required" class="error-msg">First name is required</ng-message>
@@ -33,12 +33,20 @@
         </div>
  -->
             </div>
-            <div class="numbers-container">
-                <input type="text" class="form-control input-lg" placeholder="Enter Last Name" ng-model="lastName" name="lastName" maxlength="100" ng-maxlength="100" ng-minlength="4" required autofocus />
+            <div class="lastname-container">
+                <input type="text" class="form-control input-lg" placeholder="Enter Last Name" ng-model="lastName" name="lastName" maxlength="100" ng-maxlength="100" ng-minlength="4" required/>
                 <ng-messages for="NumerologyForm.lastName.$error">
                     <ng-message when="required" class="error-msg">Last name is required</ng-message>
                     <ng-message when="minlength" class="error-msg">Min of 4 chars</ng-message>
                     <ng-message when="maxlength" class="error-msg">Max of 100 chars</ng-message>
+                </ng-messages>
+                <br />
+                <br />
+            </div>
+            <div class="dob-container">
+                <input type="date" class="form-control input-lg" placeholder="dd/mm/yyyy" ng-model="dateOfBirth" name="dateOfBirth" required/>
+                <ng-messages for="NumerologyForm.dateOfBirth.$error">
+                    <ng-message when="required" class="error-msg">Date of birth is required</ng-message>
                 </ng-messages>
                 <br />
                 <br />

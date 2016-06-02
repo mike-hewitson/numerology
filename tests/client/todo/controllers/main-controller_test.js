@@ -146,9 +146,6 @@ describe('main.controller', function() {
             _scope.lastName = 'Jones Smith';
             _scope.calculateNumbers();
 
-            // expect(_scope.firstNames).to.have.length(2);
-            // expect(_scope.firstNames[0]).to.equal('Bob');
-            // expect(_scope.firstNames[1]).to.equal('Alice');
             expect(_scope.surname).to.equal('JonesSmith');
         }));
         it('given a hyphenated name, return it joined', inject(function($controller) {
@@ -158,9 +155,6 @@ describe('main.controller', function() {
             _scope.lastName = 'Smith-Jones';
             _scope.calculateNumbers();
 
-            // expect(_scope.firstNames).to.have.length(2);
-            // expect(_scope.firstNames[0]).to.equal('Bob');
-            // expect(_scope.firstNames[1]).to.equal('Alice');
             expect(_scope.surname).to.equal('SmithJones');
         }));
     });
