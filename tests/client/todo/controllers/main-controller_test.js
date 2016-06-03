@@ -178,7 +178,7 @@ describe('main.controller', function() {
         });
 
         describe('date of birth tests', function() {
-            it('given a 1997-07-25, return it joined', inject(function($controller) {
+            it('given a 1997-07-25, return it summed down', inject(function($controller) {
                 $controller(CONTROLLER_NAME, { $scope: _scope });
 
                 _scope.firstName = 'Bob';
@@ -187,6 +187,26 @@ describe('main.controller', function() {
                 _scope.calculateNumbers();
 
                 expect(_scope.year).to.equal(8);
+            }));
+            it('given a 1811-07-25, return it special case of 11 ', inject(function($controller) {
+                $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                _scope.firstName = 'Bob';
+                _scope.lastName = 'Jones';
+                _scope.dateOfBirth = new Date(1811, 7, 25);
+                _scope.calculateNumbers();
+
+                expect(_scope.year).to.equal(11);
+            }));
+            it('given a 1993-07-25, return it special case of 22 ', inject(function($controller) {
+                $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                _scope.firstName = 'Bob';
+                _scope.lastName = 'Jones';
+                _scope.dateOfBirth = new Date(1993, 7, 25);
+                _scope.calculateNumbers();
+
+                expect(_scope.year).to.equal(22);
             }));
         });
     });
