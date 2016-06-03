@@ -388,6 +388,38 @@ describe('main.controller', function() {
                     expect(_scope.expression).to.equal(6);
                 }));
             });
+            describe('soul urge:', function() {
+                it('given Arthur Trent Wilson, return an soul urge 6', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Arthur Trent';
+                    _scope.lastName = 'Wilson';
+                    _scope.dateOfBirth = new Date(1935, 4, 28);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.soulUrge).to.equal(6);
+                }));
+                xit('given Lowell Adrian Hunter, return an soul urge 8', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Lowell Adrian';
+                    _scope.lastName = 'Hunter';
+                    _scope.dateOfBirth = new Date(1935, 4, 28);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.soulUrge).to.equal(8);
+                }));
+                xit('given Carolyn Sylvia Young, return an soul urge 22', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Carolyn Sylvia';
+                    _scope.lastName = 'Young';
+                    _scope.dateOfBirth = new Date(1935, 4, 28);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.soulUrge).to.equal(22);
+                }));
+            });
         });
     });
 

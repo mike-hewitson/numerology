@@ -76,6 +76,24 @@
                                 })));
                     }
 
+                    function retainVowels(aString) {
+                        return aString.split('')
+                            .map(function(letter) {
+                                return 'aeiou'.indexOf(letter.toLowerCase()) > -1 ? letter : "";
+                            })
+                            .join('');
+                    }
+
+                    function completelyReduceListofNames(list) {
+                        var listReduced = list.map(reduceNameToNumber);
+                        return reduceNumbers(listReduced.map((function(num) {
+                            return num.toString();
+                        })).reduce(function(a, b) {
+                            return a + b;
+                        }));
+
+                    }
+
                     // process first names
                     var firstNames = $scope.firstName.replace('-', ' ');
                     firstNames = firstNames.split(' ');
@@ -85,13 +103,10 @@
                         $scope.firstNames = firstNames;
                     }
 
+                    // TODO remove this intermdeiate display
                     $scope.firstNamesReduced = $scope.firstNames.map(reduceNameToNumber);
 
-                    $scope.firstNamesCompletelyReduced = reduceNumbers($scope.firstNamesReduced.map((function(num) {
-                                    return num.toString();
-                                })).reduce(function(a, b) {
-                                    return a + b;
-                                }));
+                    $scope.firstNamesCompletelyReduced = completelyReduceListofNames($scope.firstNames);
 
                     // prepare surname
                     var surname = $scope.lastName.replace('-', '');
@@ -110,10 +125,19 @@
                     var lifePathString = ($scope.year.toString() + $scope.month.toString() + $scope.day.toString());
                     $scope.lifePath = reduceNumbers(Number(lifePathString));
 
-                    // calculate other thing
+                    // calculate expression
 
                     var expressionString = ($scope.firstNamesCompletelyReduced.toString() + $scope.surnameReduced.toString());
                     $scope.expression = reduceNumbers(Number(expressionString));
+
+                    // calculate soul urge
+
+                    var firstNamesVowels = $scope.firstNames.map(retainVowels);
+                    var surnameVowels = retainVowels($scope.surname)
+
+                    var soulUrgeString = (completelyReduceListofNames(firstNamesVowels).toString() +
+                        reduceNameToNumber(surnameVowels).toString());
+                    $scope.soulUrge = reduceNumbers(Number(soulUrgeString));
 
                 };
 
