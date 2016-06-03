@@ -50,7 +50,7 @@ describe('main.controller', function() {
     //     }));
     // });
 
-    describe('numerology', function() {
+    describe('numerology:', function() {
         // it('should try to createTodo, but server returns error - 400', inject(function($controller) {
         //     spyOn(_logMock, 'error').and.callFake(window.angular.noop);
 
@@ -118,7 +118,7 @@ describe('main.controller', function() {
             expect(_scope.firstNames[1]).to.equal('Joe');
             expect(_scope.surname).to.equal('Smith');
         }));
-        describe('first name tests', function() {
+        describe('first name tests:', function() {
             it('given three first names, return all three', inject(function($controller) {
                 $controller(CONTROLLER_NAME, { $scope: _scope });
 
@@ -151,7 +151,7 @@ describe('main.controller', function() {
 
         });
 
-        describe('last name tests', function() {
+        describe('last name tests:', function() {
             it('given a double barrel name, return it joined', inject(function($controller) {
                 $controller(CONTROLLER_NAME, { $scope: _scope });
 
@@ -177,37 +177,71 @@ describe('main.controller', function() {
             }));
         });
 
-        describe('date of birth tests', function() {
-            it('given a 1997-07-25, return it summed down', inject(function($controller) {
-                $controller(CONTROLLER_NAME, { $scope: _scope });
+        describe('date of birth tests:', function() {
+            describe('reduce year:', function() {
+                it('given a 1997-07-25, return it summed down', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
 
-                _scope.firstName = 'Bob';
-                _scope.lastName = 'Jones';
-                _scope.dateOfBirth = new Date(1997, 7, 25);
-                _scope.calculateNumbers();
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1997, 6, 25);
+                    _scope.calculateNumbers();
 
-                expect(_scope.year).to.equal(8);
-            }));
-            it('given a 1811-07-25, return it special case of 11 ', inject(function($controller) {
-                $controller(CONTROLLER_NAME, { $scope: _scope });
+                    expect(_scope.year).to.equal(8);
+                }));
+                it('given a 1811-07-25, return it special case of 11 ', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
 
-                _scope.firstName = 'Bob';
-                _scope.lastName = 'Jones';
-                _scope.dateOfBirth = new Date(1811, 7, 25);
-                _scope.calculateNumbers();
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1811, 7, 25);
+                    _scope.calculateNumbers();
 
-                expect(_scope.year).to.equal(11);
-            }));
-            it('given a 1993-07-25, return it special case of 22 ', inject(function($controller) {
-                $controller(CONTROLLER_NAME, { $scope: _scope });
+                    expect(_scope.year).to.equal(11);
+                }));
+                it('given a 1993-07-25, return it special case of 22 ', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
 
-                _scope.firstName = 'Bob';
-                _scope.lastName = 'Jones';
-                _scope.dateOfBirth = new Date(1993, 7, 25);
-                _scope.calculateNumbers();
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1993, 7, 25);
+                    _scope.calculateNumbers();
 
-                expect(_scope.year).to.equal(22);
-            }));
+                    expect(_scope.year).to.equal(22);
+                }));
+            });
+            describe('reduce month:', function() {
+                it('given a 1997-07-25, return a month of 7', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1997, 6, 25);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.month).to.equal(7);
+                }));
+                it('given a 1997-12-25, return a month of 3', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1997, 11, 25);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.month).to.equal(3);
+                }));
+                it('given a 1811-11-25, return it special case of 11 ', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1811, 10, 25);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.month).to.equal(11);
+                }));
+            });
         });
     });
 

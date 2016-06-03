@@ -24,28 +24,28 @@
                     surname = surname.replace(' ', '');
                     $scope.surname = surname;
 
-                    // console.log($scope.dateOfBirth);
-
                     function reduceNumbers(number) {
-                        // var stringYear = $scope.dateOfBirth.getFullYear().toString();
-                        // console.log(number);
-                        var numberArray = number.toString().split('');
-                        // console.log(numberArray);
+                        // var re
+                            var reducedNumber = number;
+                        if (number > 9 && (number !== 11 && number !== 22)) {
+                            reducedNumber = number.toString().split('').map(Number).reduce(function(a, b) {
+                                return a + b;
+                            });
+                        }
+                        console.log(number);
+                        console.log(reducedNumber);
+                        if (reducedNumber > 9 && (reducedNumber !== 11 && reducedNumber !== 22)) {
+                            console.log('recursing ');
+                            reducedNumber = reduceNumbers(reducedNumber);
+                        }
 
-                        return numberArray.map(Number).reduce(function(a, b) {
-                            return a + b;
-                        });
-
+                        return reducedNumber;
                     }
 
+                    console.log('doing year');
                     $scope.year = reduceNumbers($scope.dateOfBirth.getFullYear());
-                    if ($scope.year > 9 && ($scope.year !== 11 && $scope.year !== 22)) {
-                        $scope.year = reduceNumbers($scope.year);
-                    } 
-
-                    // console.log($scope.year);
-                    // $scope.year = 10;
-
+                    console.log('doing month');
+                    $scope.month = reduceNumbers($scope.dateOfBirth.getMonth() + 1);
                 };
 
             }
