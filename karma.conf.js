@@ -21,7 +21,6 @@ module.exports = (config) => {
             'client/dev/bower_components/angular-messages/angular-messages.min.js',
 
             'client/dev/app.js',
-            'client/dev/chai.js',
             'client/dev/app.config.js',
             'client/dev/app.route.js',
             'client/dev/!(bower_components)/**/*.js',
