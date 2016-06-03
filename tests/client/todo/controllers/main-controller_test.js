@@ -315,6 +315,79 @@ describe('main.controller', function() {
                     expect(_scope.lifePath).to.equal(11);
                 }));
             });
+            describe('life path:', function() {
+                it('given a 1935-05-28, return a 9,5,1 and life path 6', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1935, 4, 28);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.year).to.equal(9);
+                    expect(_scope.month).to.equal(5);
+                    expect(_scope.day).to.equal(1);
+                    expect(_scope.lifePath).to.equal(6);
+                }));
+                it('given a 1975-11-04, return a 22,11,4 and life path 1', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1975, 10, 4);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.year).to.equal(22);
+                    expect(_scope.month).to.equal(11);
+                    expect(_scope.day).to.equal(4);
+                    expect(_scope.lifePath).to.equal(1);
+                }));
+                it('given a 1940-03-12, return 5,3,3 and life path of 11', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1940, 2, 12);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.year).to.equal(5);
+                    expect(_scope.month).to.equal(3);
+                    expect(_scope.day).to.equal(3);
+                    expect(_scope.lifePath).to.equal(11);
+                }));
+            });
+            describe('expression:', function() {
+                it('given Louise Karen Casper, return an expression 3', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Louise Karen';
+                    _scope.lastName = 'Casper';
+                    _scope.dateOfBirth = new Date(1935, 4, 28);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.expression).to.equal(3);
+                }));
+                it('given Howard Joseph Snyder, return an expression 11', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Howard Joseph';
+                    _scope.lastName = 'Snyder';
+                    _scope.dateOfBirth = new Date(1935, 4, 28);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.expression).to.equal(11);
+                }));
+                it('given Sylvia Anne Pasetta, return an expression 6', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Sylvia Anne';
+                    _scope.lastName = 'Pasetta';
+                    _scope.dateOfBirth = new Date(1935, 4, 28);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.expression).to.equal(6);
+                }));
+            });
         });
     });
 

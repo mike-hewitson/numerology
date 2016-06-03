@@ -86,12 +86,18 @@
                     }
 
                     $scope.firstNamesReduced = $scope.firstNames.map(reduceNameToNumber);
-                    console.log($scope.firstNamesReduced);
+
+                    $scope.firstNamesCompletelyReduced = reduceNumbers($scope.firstNamesReduced.map((function(num) {
+                                    return num.toString();
+                                })).reduce(function(a, b) {
+                                    return a + b;
+                                }));
 
                     // prepare surname
                     var surname = $scope.lastName.replace('-', '');
                     surname = surname.replace(' ', '');
                     $scope.surname = surname;
+                    $scope.surnameReduced = reduceNameToNumber($scope.surname);
 
                     // process date of birth
 
@@ -104,6 +110,10 @@
                     var lifePathString = ($scope.year.toString() + $scope.month.toString() + $scope.day.toString());
                     $scope.lifePath = reduceNumbers(Number(lifePathString));
 
+                    // calculate other thing
+
+                    var expressionString = ($scope.firstNamesCompletelyReduced.toString() + $scope.surnameReduced.toString());
+                    $scope.expression = reduceNumbers(Number(expressionString));
 
                 };
 
