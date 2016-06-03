@@ -32,21 +32,15 @@
                                 return a + b;
                             });
                         }
-                        console.log(number);
-                        console.log(reducedNumber);
                         if (reducedNumber > 9 && (reducedNumber !== 11 && reducedNumber !== 22)) {
-                            console.log('recursing ');
                             reducedNumber = reduceNumbers(reducedNumber);
                         }
 
                         return reducedNumber;
                     }
 
-                    console.log('doing year');
                     $scope.year = reduceNumbers($scope.dateOfBirth.getFullYear());
-                    console.log('doing month');
                     $scope.month = reduceNumbers($scope.dateOfBirth.getMonth() + 1);
-                    console.log('doing day');
                     $scope.day = reduceNumbers($scope.dateOfBirth.getDate());
                 };
 
