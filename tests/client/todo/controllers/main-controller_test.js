@@ -96,6 +96,8 @@ describe('main.controller', function() {
 
             _scope.firstName = 'Bob';
             _scope.lastName = 'Smith';
+            _scope.dateOfBirth = new Date(1997, 7, 25);
+
             _scope.calculateNumbers();
 
             expect(_scope.firstNames[0]).to.equal('Bob');
@@ -107,6 +109,8 @@ describe('main.controller', function() {
 
             _scope.firstName = 'Bob-Joe';
             _scope.lastName = 'Smith';
+            _scope.dateOfBirth = new Date(1997, 7, 25);
+
             _scope.calculateNumbers();
 
             expect(_scope.firstNames).to.have.length(2);
@@ -114,48 +118,77 @@ describe('main.controller', function() {
             expect(_scope.firstNames[1]).to.equal('Joe');
             expect(_scope.surname).to.equal('Smith');
         }));
-        it('given three first names, return all three', inject(function($controller) {
-            $controller(CONTROLLER_NAME, { $scope: _scope });
+        describe('first name tests', function() {
+            it('given three first names, return all three', inject(function($controller) {
+                $controller(CONTROLLER_NAME, { $scope: _scope });
 
-            _scope.firstName = 'Bob Joe John';
-            _scope.lastName = 'Smith';
-            _scope.calculateNumbers();
+                _scope.firstName = 'Bob Joe John';
+                _scope.lastName = 'Smith';
+                _scope.dateOfBirth = new Date(1997, 7, 25);
 
-            expect(_scope.firstNames).to.have.length(3);
-            expect(_scope.firstNames[0]).to.equal('Bob');
-            expect(_scope.firstNames[1]).to.equal('Joe');
-            expect(_scope.firstNames[2]).to.equal('John');
-            expect(_scope.surname).to.equal('Smith');
-        }));
-        it('given more than three first names, return the first and last', inject(function($controller) {
-            $controller(CONTROLLER_NAME, { $scope: _scope });
+                _scope.calculateNumbers();
 
-            _scope.firstName = 'Bob Joe John Alice';
-            _scope.lastName = 'Smith';
-            _scope.calculateNumbers();
+                expect(_scope.firstNames).to.have.length(3);
+                expect(_scope.firstNames[0]).to.equal('Bob');
+                expect(_scope.firstNames[1]).to.equal('Joe');
+                expect(_scope.firstNames[2]).to.equal('John');
+                expect(_scope.surname).to.equal('Smith');
+            }));
+            it('given more than three first names, return the first and last', inject(function($controller) {
+                $controller(CONTROLLER_NAME, { $scope: _scope });
 
-            expect(_scope.firstNames).to.have.length(2);
-            expect(_scope.firstNames[0]).to.equal('Bob');
-            expect(_scope.firstNames[1]).to.equal('Alice');
-            expect(_scope.surname).to.equal('Smith');
-        }));
-        it('given a double barrel name, return it joined', inject(function($controller) {
-            $controller(CONTROLLER_NAME, { $scope: _scope });
+                _scope.firstName = 'Bob Joe John Alice';
+                _scope.lastName = 'Smith';
+                _scope.dateOfBirth = new Date(1997, 7, 25);
 
-            _scope.firstName = 'Bob Joe John Alice';
-            _scope.lastName = 'Jones Smith';
-            _scope.calculateNumbers();
+                _scope.calculateNumbers();
 
-            expect(_scope.surname).to.equal('JonesSmith');
-        }));
-        it('given a hyphenated name, return it joined', inject(function($controller) {
-            $controller(CONTROLLER_NAME, { $scope: _scope });
+                expect(_scope.firstNames).to.have.length(2);
+                expect(_scope.firstNames[0]).to.equal('Bob');
+                expect(_scope.firstNames[1]).to.equal('Alice');
+                expect(_scope.surname).to.equal('Smith');
+            }));
 
-            _scope.firstName = 'Bob Joe John Alice';
-            _scope.lastName = 'Smith-Jones';
-            _scope.calculateNumbers();
+        });
 
-            expect(_scope.surname).to.equal('SmithJones');
-        }));
+        describe('last name tests', function() {
+            it('given a double barrel name, return it joined', inject(function($controller) {
+                $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                _scope.firstName = 'Bob Joe John Alice';
+                _scope.lastName = 'Jones Smith';
+                _scope.dateOfBirth = new Date(1997, 7, 25);
+
+                _scope.calculateNumbers();
+
+                expect(_scope.surname).to.equal('JonesSmith');
+            }));
+
+            it('given a hyphenated name, return it joined', inject(function($controller) {
+                $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                _scope.firstName = 'Bob Joe John Alice';
+                _scope.lastName = 'Smith-Jones';
+                _scope.dateOfBirth = new Date(1997, 7, 25);
+
+                _scope.calculateNumbers();
+
+                expect(_scope.surname).to.equal('SmithJones');
+            }));
+        });
+
+        describe('date of birth tests', function() {
+            it('given a 1997-07-25, return it joined', inject(function($controller) {
+                $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                _scope.firstName = 'Bob';
+                _scope.lastName = 'Jones';
+                _scope.dateOfBirth = new Date(1997, 7, 25);
+                _scope.calculateNumbers();
+
+                expect(_scope.year).to.equal(8);
+            }));
+        });
     });
+
 });

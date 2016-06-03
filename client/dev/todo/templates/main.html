@@ -44,9 +44,10 @@
                 <br />
             </div>
             <div class="dob-container">
-                <input type="date" class="form-control input-lg" placeholder="dd/mm/yyyy" ng-model="dateOfBirth" name="dateOfBirth" required/>
+                <input type="date" class="form-control input-lg" placeholder="yyyy-mm-dd" ng-model="dateOfBirth" name="dateOfBirth" required/>
                 <ng-messages for="NumerologyForm.dateOfBirth.$error">
                     <ng-message when="required" class="error-msg">Date of birth is required</ng-message>
+                    <ng-message when="error" class="error-msg">Must be format yyyy-mm-dd</ng-message>
                 </ng-messages>
                 <br />
                 <br />
