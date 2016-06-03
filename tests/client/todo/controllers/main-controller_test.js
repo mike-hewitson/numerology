@@ -242,6 +242,38 @@ describe('main.controller', function() {
                     expect(_scope.month).to.equal(11);
                 }));
             });
+            describe('reduce day:', function() {
+                it('given a 1997-07-25, return a day of 7', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1997, 6, 25);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.day).to.equal(7);
+                }));
+                it('given a 1997-12-12, return a day of 3', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1997, 11, 12);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.day).to.equal(3);
+                }));
+                it('given a 1811-11-11, return it special case of 11 ', inject(function($controller) {
+                    $controller(CONTROLLER_NAME, { $scope: _scope });
+
+                    _scope.firstName = 'Bob';
+                    _scope.lastName = 'Jones';
+                    _scope.dateOfBirth = new Date(1811, 10, 11);
+                    _scope.calculateNumbers();
+
+                    expect(_scope.day).to.equal(11);
+                }));
+            });
         });
     });
 

@@ -46,6 +46,8 @@
                     $scope.year = reduceNumbers($scope.dateOfBirth.getFullYear());
                     console.log('doing month');
                     $scope.month = reduceNumbers($scope.dateOfBirth.getMonth() + 1);
+                    console.log('doing day');
+                    $scope.day = reduceNumbers($scope.dateOfBirth.getDate());
                 };
 
             }
