@@ -42,6 +42,10 @@
                     $scope.year = reduceNumbers($scope.dateOfBirth.getFullYear());
                     $scope.month = reduceNumbers($scope.dateOfBirth.getMonth() + 1);
                     $scope.day = reduceNumbers($scope.dateOfBirth.getDate());
+
+                    var lifePathString = ($scope.year.toString() + $scope.month.toString() + $scope.day.toString());
+                    console.log(lifePathString);
+                    $scope.lifePath = reduceNumbers(Number(lifePathString));
                 };
 
             }
